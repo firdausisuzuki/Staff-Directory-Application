@@ -18,6 +18,7 @@ namespace StaffDirectoryApplication.Pages.Staffs
 
             try 
             {
+                //Change the connectionString if the .dbo is different / Check the database properties to get the Connection String
                 String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=staffdirectory;Integrated Security=True";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

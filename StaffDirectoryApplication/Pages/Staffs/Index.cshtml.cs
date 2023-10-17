@@ -14,7 +14,11 @@ namespace StaffDirectoryApplication.Pages.Staffs
         {
             try
             {
-                String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=staffdirectory;Integrated Security=True";
+                IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+                String connectionString = configuration["ConnectionStrings:MyDatabase"];
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -22,7 +26,7 @@ namespace StaffDirectoryApplication.Pages.Staffs
 
                     if (!string.IsNullOrEmpty(searchName))
                     {
-                        sql += " WHERE fname LIKE @SearchName OR lname LIKE @SearchName OR department LIKE @SearchName";
+                        sql += " WHERE fname LIKE @SearchName OR lname LIKE @SearchName OR department LIKE @SearchName ORDER BY fname";
                     }
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
