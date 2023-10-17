@@ -31,8 +31,11 @@ namespace StaffDirectoryApplication.Pages.Staffs
 
             try
             {
-                //Change the connectionString if the .dbo is different / Check the database properties to get the Connection String
-                String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=staffdirectory;Integrated Security=True";
+                IConfiguration configuration = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+               .Build();
+                String connectionString = configuration["ConnectionStrings:MyDatabase"];
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
