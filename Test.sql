@@ -29,3 +29,4 @@ VALUES
 ('Bob', 'Marley', 'Male', '1998-04-17', 'IT Executive', 'IT'),
 ('Cristiano', 'Ronaldo', 'Male', '1985-02-05', 'Customer Support', 'IT');
 
+-- Once the table has been created, you can run the web application.
